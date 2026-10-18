@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Noto Serif TC', 'Cinzel', Georgia, Cambria, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Smooth scrolling and base typography settings */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #1e293b; /* High contrast slate-800 for optimal human reading */
+  background-color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Specialized crisp rendering for classical Hanzi & PinYin characters */
+.font-serif,
+.font-hanzi {
+  font-family: 'Noto Serif TC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Cinzel', Georgia, serif;
+}
+
+/* Ensure minimum touch target and accessible typography */
+button, input, select, textarea {
+  font-family: inherit;
+}

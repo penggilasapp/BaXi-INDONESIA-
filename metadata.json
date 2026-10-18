@@ -1,0 +1,6 @@
+{
+  "name": "BaZi by PENGGILAS",
+  "description": "Aplikasi analisis BaZi (Empat Pilar Takdir) modern oleh PENGGILAS untuk menghitung Day Master, peta lima elemen Wu Xing, dan kalender energi harian dengan panduan keberuntungan praktis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
