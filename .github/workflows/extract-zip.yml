@@ -1,0 +1,55 @@
+name: Extract BaZi Project ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find and extract ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ZIP_FILE="BAZI_HARMONY_P01_FIXED.zip"
+
+          if [ ! -f "$ZIP_FILE" ]; then
+            echo "ZIP tidak ditemukan: $ZIP_FILE"
+            exit 1
+          fi
+
+          mkdir -p /tmp/bazi-project
+          unzip -o "$ZIP_FILE" -d /tmp/bazi-project
+
+          if [ ! -f /tmp/bazi-project/package.json ]; then
+            echo "package.json tidak ditemukan pada root ZIP."
+            exit 1
+          fi
+
+          cp -a /tmp/bazi-project/. .
+
+          echo "Ekstraksi ZIP selesai."
+
+      - name: Commit extracted project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan untuk disimpan."
+            exit 0
+          fi
+
+          git commit -m "Extract BaZi Harmony P-01 project"
+          git push
